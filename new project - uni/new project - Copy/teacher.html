@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - UniVerse</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/teacher.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.0.0/dist/tesseract.min.js"></script>
+</head>
+<body>
+    <section id="teacher-dashboard" class="page teacher-theme" style="display: flex; flex-direction: row; width: 100%; min-height: 100vh;">
+
+        <!-- SIDEBAR -->
+        <aside class="teacher-sidebar" style="width: 250px; min-height: 100vh; flex-direction: column; flex-shrink: 0; display: flex;">
+            <div class="sidebar-header" style="padding: 15px 20px; border-right: 1px solid rgba(79, 195, 247, 0.2); margin-right: 20px;">
+                <h1 class="sidebar-title" style="font-size: 16px; font-weight: 700; color: white; margin: 0;">Teacher Portal</h1>
+            </div>
+            
+            <nav class="sidebar-nav" style="flex-direction: column; gap: 5px; flex: 1; padding: 0 10px;">
+                <button onclick="showTeacherTab('t_home')" class="sidebar-nav-item active" data-icon="🏠" style="justify-content: flex-start; padding: 10px 14px; width: 100%; text-align: left;">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-label">Dashboard</span>
+                </button>
+                <button onclick="showTeacherTab('t_classes')" class="sidebar-nav-item" data-icon="📚" style="justify-content: flex-start;">
+                    <span class="nav-icon">📚</span>
+                    <span class="nav-label">My Classes</span>
+                </button>
+                <button onclick="showTeacherTab('t_directory')" class="sidebar-nav-item" data-icon="👥" style="justify-content: flex-start;">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-label">Students</span>
+                </button>
+                <button onclick="showTeacherTab('t_marks')" class="sidebar-nav-item" data-icon="📝" style="justify-content: flex-start;">
+                    <span class="nav-icon">📝</span>
+                    <span class="nav-label">Marks</span>
+                </button>
+                <button onclick="showTeacherTab('t_events')" class="sidebar-nav-item" data-icon="📅" style="justify-content: flex-start;">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-label">Events</span>
+                </button>
+                <button onclick="showTeacherTab('t_ocr')" class="sidebar-nav-item" data-icon="📷" style="justify-content: flex-start;">
+                    <span class="nav-icon">📷</span>
+                    <span class="nav-label">OCR</span>
+                </button>
+                <button onclick="showTeacherTab('t_lostfound')" class="sidebar-nav-item" data-icon="🔍" style="justify-content: flex-start;">
+                    <span class="nav-icon">🔍</span>
+                    <span class="nav-label">Lost & Found</span>
+                </button>
+                <button onclick="showTeacherTab('t_performance')" class="sidebar-nav-item" data-icon="📈" style="justify-content: flex-start;">
+                    <span class="nav-icon">📈</span>
+                    <span class="nav-label">Analytics</span>
+                </button>
+                <button onclick="showTeacherTab('t_profile')" class="sidebar-nav-item" data-icon="⚙️" style="justify-content: flex-start;">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-label">Settings</span>
+                </button>
+            </nav>
+            
+            <button onclick="returnHome()" class="sidebar-logout-btn" style="width: 90%; margin: 20px auto 0;">Logout</button>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="teacher-main" style="flex: 1; min-width: 0; padding: 0; margin: 0; overflow-y: auto; background: linear-gradient(135deg, #1a1f3a 0%, #16213e 50%, #0f3460 100%); display: flex; flex-direction: column; align-items: stretch;">
+
+            <!-- HOME TAB -->
+            <section id="t_home" class="t-tab active" style="display: block !important; min-height: 100%; width: 100%; margin: 0; padding: 0;">
+                <div class="home-container" style="color: #e0e0e0; padding: 40px; margin: 0;">
+                    <div class="home-top-section">
+                        <div class="home-middle">
+                            <h3 style="color: #D4A574; text-transform: uppercase; font-size: 13px; letter-spacing: 1px; margin-bottom: 20px;">UPCOMING ASSIGNMENTS</h3>
+                            <div class="assignments-list">
+                                <div class="assignment-item">
+                                    <div class="assignment-status pending">Pending</div>
+                                    <div class="assignment-details">
+                                        <div class="assignment-label">Today:</div>
+                                        <div class="assignment-text">Math 101 Quiz</div>
+                                        <div class="assignment-meta">Due: 3:00 PM</div>
+                                    </div>
+                                </div>
+                                <div class="assignment-item">
+                                    <div class="assignment-status pending">Pending</div>
+                                    <div class="assignment-details">
+                                        <div class="assignment-label">Tomorrow:</div>
+                                        <div class="assignment-text">Science 202 Lab Report</div>
+                                        <div class="assignment-meta">Due: 11:59 PM</div>
+                                    </div>
+                                </div>
+                                <div class="assignment-item">
+                                    <div class="assignment-status upcoming">Upcoming</div>
+                                    <div class="assignment-details">
+                                        <div class="assignment-label">Nov 20:</div>
+                                        <div class="assignment-text">English Literature Essay</div>
+                                        <div class="assignment-meta">Due: 5:00 PM</div>
+                                    </div>
+                                </div>
+                                <div class="assignment-item">
+                                    <div class="assignment-status upcoming">Upcoming</div>
+                                    <div class="assignment-details">
+                                        <div class="assignment-label">Nov 22:</div>
+                                        <div class="assignment-text">History Project Submission</div>
+                                        <div class="assignment-meta">Due: 6:00 PM</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="home-right">
+                            <div class="greeting-box">
+                                <div class="welcome-emoji-section">
+                                    <h2 class="welcome-heading">Welcome Back</h2>
+                                </div>
+                                <p class="greeting-text" id="greetingTeacher">Ms. Kaur</p>
+                                <p class="greeting-date" id="currentDate"></p>
+                            </div>
+                        </div>
+                        
+                        <div class="home-timetable">
+                            <h3 style="color: #D4A574; text-transform: uppercase; font-size: 13px; letter-spacing: 1px; margin-bottom: 20px;">TODAY'S TIMETABLE</h3>
+                            <div class="timetable-list">
+                                <div class="timetable-item">
+                                    <div class="timetable-time">9:00 AM</div>
+                                    <div class="timetable-class">Math 101 - Room 201</div>
+                                </div>
+                                <div class="timetable-item">
+                                    <div class="timetable-time">10:30 AM</div>
+                                    <div class="timetable-class">Science 202 - Lab A</div>
+                                </div>
+                                <div class="timetable-item">
+                                    <div class="timetable-time">12:00 PM</div>
+                                    <div class="timetable-class">Break Time</div>
+                                </div>
+                                <div class="timetable-item">
+                                    <div class="timetable-time">1:00 PM</div>
+                                    <div class="timetable-class">English Literature - Room 105</div>
+                                </div>
+                                <div class="timetable-item">
+                                    <div class="timetable-time">2:30 PM</div>
+                                    <div class="timetable-class">History - Room 301</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="home-bottom-section">
+                        <h3 class="announcements-title" style="color: #D4A574; text-transform: uppercase; font-size: 13px; letter-spacing: 1px; margin-bottom: 20px;">📢 ANNOUNCEMENTS</h3>
+                        <div class="announcements-container">
+                            <div class="announcement-card">
+                                <div class="announcement-icon">📝</div>
+                                <div class="announcement-content">
+                                    <h4>End Semester Examinations</h4>
+                                    <p>Exams scheduled to commence from November 25, 2025. All students must submit their registration forms by November 20. Exam schedules are available on the student portal.</p>
+                                    <span class="announcement-date">November 20 - Deadline</span>
+                                </div>
+                            </div>
+                            <div class="announcement-card">
+                                <div class="announcement-icon">👥</div>
+                                <div class="announcement-content">
+                                    <h4>Faculty Meeting</h4>
+                                    <p>Faculty meeting scheduled for November 18 at 2:00 PM in Conference Hall A. Discussion on curriculum updates and student performance reviews. All staff members are requested to attend.</p>
+                                    <span class="announcement-date">November 18 - 2:00 PM</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MY CLASSES TAB -->
+            <section id="t_classes" class="t-tab" style="display: none;">
+                <h2>My Classes</h2>
+                <div class="classes-grid">
+                    <div class="class-card">
+                        <div class="class-header">
+                            <h3>Math 101</h3>
+                            <span class="class-code">CSE-2A</span>
+                        </div>
+                        <p class="class-section">Section: A</p>
+                        <p class="class-students">Students: 32</p>
+                        <button class="btn btn-primary" style="width: 100%; margin-top: 15px;">Manage Class</button>
+                    </div>
+                    <div class="class-card">
+                        <div class="class-header">
+                            <h3>Science 202</h3>
+                            <span class="class-code">CSE-2B</span>
+                        </div>
+                        <p class="class-section">Section: B</p>
+                        <p class="class-students">Students: 28</p>
+                        <button class="btn btn-primary" style="width: 100%; margin-top: 15px;">Manage Class</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ATTENDANCE TAB -->
+            <section id="t_attendance" class="t-tab" style="display: none;">
+                <h2>Attendance Manager</h2>
+                <div class="filters">
+                    <select class="filter-select">
+                        <option>Select Class</option>
+                        <option>CSE-2A</option>
+                        <option>CSE-2B</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>Select Subject</option>
+                        <option>Programming</option>
+                        <option>Database</option>
+                    </select>
+                    <input type="date" class="filter-select">
+                    <button class="btn btn-primary" onclick="saveAttendance()">Save Attendance</button>
+                    <button class="btn btn-secondary" onclick="openOCRForAttendance()">Scan Attendance (OCR)</button>
+                </div>
+
+                <div class="table-container">
+                    <table class="t-table">
+                        <tr>
+                            <th>Roll</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr>
+                            <td>01</td>
+                            <td>Navneet Kumar</td>
+                            <td><button class="att-btn present" onclick="toggleAttendance(this)">Present</button></td>
+                        </tr>
+                        <tr>
+                            <td>02</td>
+                            <td>Rahul Singh</td>
+                            <td><button class="att-btn absent" onclick="toggleAttendance(this)">Absent</button></td>
+                        </tr>
+                        <tr>
+                            <td>03</td>
+                            <td>Priya Sharma</td>
+                            <td><button class="att-btn present" onclick="toggleAttendance(this)">Present</button></td>
+                        </tr>
+                        <tr>
+                            <td>04</td>
+                            <td>Arjun Patel</td>
+                            <td><button class="att-btn present" onclick="toggleAttendance(this)">Present</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+
+            <!-- PERFORMANCE TAB -->
+            <section id="t_performance" class="t-tab" style="display: none;">
+                <h2>Performance Overview</h2>
+                <div class="chart-container">
+                    <canvas id="t_performanceGraph"></canvas>
+                </div>
+            </section>
+
+            <!-- ACTIVITIES TAB -->
+            <section id="t_activities" class="t-tab" style="display: none;">
+                <h2>Manage Activities</h2>
+                <div class="activity-form">
+                    <input type="text" placeholder="Activity Title" class="input-field">
+                    <textarea placeholder="Activity Description" class="input-field"></textarea>
+                    <input type="date" class="input-field">
+                    <button class="btn btn-primary">Upload Activity</button>
+                </div>
+                <div class="activities-list">
+                    <div class="activity-item">
+                        <h3>Science Fair 2025</h3>
+                        <p>Annual science fair exhibition</p>
+                        <span class="activity-date">Date: 2025-02-20</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DIRECTORY TAB -->
+            <section id="t_directory" class="t-tab" style="display: none;">
+                <h2>Student Directory</h2>
+                <input type="text" class="search-box" placeholder="Search student...">
+
+                <div class="table-container">
+                    <table class="t-table">
+                        <tr>
+                            <th>Roll</th>
+                            <th>Name</th>
+                            <th>Class</th>
+                            <th>Email</th>
+                        </tr>
+                        <tr>
+                            <td>01</td>
+                            <td>Navneet Kumar</td>
+                            <td>CSE-2A</td>
+                            <td>navneet@university.edu</td>
+                        </tr>
+                        <tr>
+                            <td>02</td>
+                            <td>Rahul Singh</td>
+                            <td>CSE-2A</td>
+                            <td>rahul@university.edu</td>
+                        </tr>
+                        <tr>
+                            <td>03</td>
+                            <td>Priya Sharma</td>
+                            <td>CSE-2B</td>
+                            <td>priya@university.edu</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+
+            <!-- EVENTS TAB -->
+            <section id="t_events" class="t-tab" style="display: none;">
+                <h2>Manage Events</h2>
+                <div class="events-management">
+                    <div class="event-form-section">
+                        <h3>📅 Create New Event</h3>
+                        <form id="eventForm" class="event-form">
+                            <div class="form-group">
+                                <input 
+                                    type="text" 
+                                    id="eventTitle" 
+                                    placeholder="Event Title" 
+                                    class="input-field"
+                                    required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <input 
+                                    type="date" 
+                                    id="eventDate" 
+                                    class="input-field"
+                                    required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <input 
+                                    type="text" 
+                                    id="eventClub" 
+                                    placeholder="Club/Department Name" 
+                                    class="input-field"
+                                    required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <textarea 
+                                    id="eventDescription" 
+                                    placeholder="Event Description" 
+                                    class="input-field textarea-field"
+                                    rows="3"
+                                ></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">➕ Create Event</button>
+                        </form>
+                    </div>
+
+                    <div class="events-list-section">
+                        <h3>📋 Upcoming Events</h3>
+                        <div id="eventsList" class="events-list-container">
+                            <p class="empty-state">No events created yet</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LOST & FOUND TAB -->
+            <section id="t_lostfound" class="t-tab" style="display: none;">
+                <h2>Lost & Found Management</h2>
+                <div class="lf-management-wrapper">
+                    <div class="lf-form-wrapper">
+                        <div class="form-card lf-form-card">
+                            <h3>📝 Report Lost or Found Item</h3>
+                            <form id="lfForm" class="lf-form">
+                                <div class="form-group">
+                                    <input 
+                                        type="text" 
+                                        id="lfItemName" 
+                                        placeholder="What item are you reporting?" 
+                                        class="input-field"
+                                        required
+                                    >
+                                </div>
+                                <div class="form-group">
+                                    <input 
+                                        type="text" 
+                                        id="lfItemLocation" 
+                                        placeholder="Where was it lost/found?" 
+                                        class="input-field"
+                                        required
+                                    >
+                                </div>
+                                <div class="form-group">
+                                    <select id="lfItemType" class="input-field select-field" required>
+                                        <option value="">Select status</option>
+                                        <option value="lost">🔴 Lost</option>
+                                        <option value="found">🟢 Found</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <textarea 
+                                        id="lfItemDescription" 
+                                        placeholder="Add description (color, brand, condition, etc.)" 
+                                        class="input-field textarea-field"
+                                        rows="3"
+                                    ></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <span>➕ Report Item</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="lf-display-wrapper">
+                        <div class="lf-items-section">
+                            <h3>🔍 Items for Verification</h3>
+                            <div id="pendingItems" class="items-grid">
+                                <p class="empty-state">No pending items</p>
+                            </div>
+                        </div>
+
+                        <div class="lf-verified-section">
+                            <h3>✔️ Verified Items</h3>
+                            <div id="verifiedItems" class="items-grid">
+                                <p class="empty-state">No verified items yet</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- OCR EXTRACT TAB -->
+            <section id="t_ocr" class="t-tab" style="display: none;">
+                <h2>📷 Automated Attendance Marking via OCR</h2>
+                <div style="text-align: center; padding: 60px 30px;">
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; border-radius: 15px; max-width: 500px; margin: 0 auto;">
+                        <h3 style="margin-bottom: 20px; font-size: 1.5em;">🚀 Advanced OCR System</h3>
+                        <p style="margin-bottom: 30px; font-size: 1.1em; opacity: 0.9;">Upload a photo of your attendance or marks register. Our AI will automatically extract all data and generate reports.</p>
+                        <button onclick="window.open('ocr-dashboard.html', '_blank')" class="btn btn-primary" style="padding: 15px 30px; font-size: 1.1em; border: none; background: white; color: #667eea; font-weight: 600; cursor: pointer; border-radius: 10px;">
+                            Open Advanced OCR Dashboard →
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MARKS TAB -->
+            <section id="t_marks" class="t-tab" style="display: none;">
+                <h2>Student Marks Management</h2>
+                <div class="marks-container">
+                    <div class="marks-filters">
+                        <label for="classSelect">Select Class:</label>
+                        <select id="classSelect" class="filter-select" onchange="loadStudentMarks()">
+                            <option value="">-- Select a Class --</option>
+                            <option value="CSE-2A">CSE-2A</option>
+                            <option value="CSE-2B">CSE-2B</option>
+                        </select>
+                    </div>
+
+                    <div id="marksContent" class="marks-content" style="display: none;">
+                        <div class="marks-table-container">
+                            <h3 id="classTitle"></h3>
+                            <table class="marks-table">
+                                <thead>
+                                    <tr>
+                                        <th>Roll No</th>
+                                        <th>Student Name</th>
+                                        <th>Mathematics</th>
+                                        <th>Science</th>
+                                        <th>English</th>
+                                        <th>History</th>
+                                        <th>Total</th>
+                                        <th>Average</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="marksTableBody">
+                                    <!-- Student marks will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="noClassSelected" class="empty-state" style="text-align: center; padding: 40px;">
+                        <p style="font-size: 18px; color: #999;">Please select a class to view student marks</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROFILE TAB -->
+            <section id="t_profile" class="t-tab" style="display: none;">
+                <h2>Your Profile</h2>
+                <div class="profile-card">
+                    <p><b>Name:</b> <span id="teacherName">Ms. Kaur</span></p>
+                    <p><b>Teacher ID:</b> <span id="teacherId">T001</span></p>
+                    <p><b>Department:</b> Computer Science</p>
+                    <p><b>Experience:</b> 5 years</p>
+                    <p><b>Email:</b> ms.kaur@university.edu</p>
+                </div>
+            </section>
+
+        </main>
+    </section>
+
+    <script src="js/teacher-simple.js"></script>
+    <script src="js/teacher-ocr.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniVerse - Student-Teacher Dashboard</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- Original Styles -->
+    <link rel="stylesheet" href="css/glass-style.css"> <!-- Glassmorphism Theme -->
+</head>
+<body class="landing-page">
+    <!-- Animated Background -->
+    <div class="stars"></div>
+    
+    <!-- Main Landing Page -->
+    <div class="landing-container">
+        <div class="landing-content">
+            <h1 class="landing-title">UniVerse</h1>
+            <p class="landing-subtitle">Student-Teacher Dashboard</p>
+            
+            <!-- Portal Cards Grid -->
+            <div class="portal-grid">
+                <!-- Student Portal Card -->
+                <button class="portal-card student-portal" id="studentPortalBtn">
+                    <div class="portal-header student-header">
+                        <span class="portal-icon">👨‍🎓</span>
+                        <h2>Student Portal</h2>
+                    </div>
+                </button>
+
+                <!-- Teacher Portal Card -->
+                <button class="portal-card teacher-portal" id="teacherPortalBtn">
+                    <div class="portal-header teacher-header">
+                        <span class="portal-icon">👨‍🏫</span>
+                        <h2>Teacher Portal</h2>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Overlay Modal -->
+    <div id="loginOverlay" class="login-overlay hidden">
+        <div class="login-form-container">
+            <button class="close-btn" onclick="closeLoginForm()">×</button>
+            
+            <!-- Student Login Form -->
+            <div id="studentLoginForm" class="login-form-content hidden">
+                <h2>Student Login</h2>
+                <span class="portal-icon">👨‍🎓</span>
+                <p class="form-subtitle">Enter your credentials</p>
+                
+                <form id="studentForm">
+                    <div class="form-group">
+                        <label>Student ID</label>
+                        <input type="text" placeholder="Enter student ID" class="input-field" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="Enter password" class="input-field" required>
+                    </div>
+                    <div id="student-error-message" class="error-message" style="color: red; margin-bottom: 10px;"></div>
+                    <div class="button-group">
+                        <button type="button" class="btn btn-login" onclick="handleStudentLogin()">Log In</button>
+                        <button type="button" class="btn btn-signup" onclick="handleStudentDemo()">Sign Up</button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Teacher Login Form -->
+            <div id="teacherLoginForm" class="login-form-content hidden">
+                <h2>Teacher Login</h2>
+                <span class="portal-icon">👨‍🏫</span>
+                <p class="form-subtitle">Enter your credentials</p>
+                
+                <form id="teacherForm">
+                    <div class="form-group">
+                        <label>Teacher ID</label>
+                        <input type="text" placeholder="Enter teacher ID" class="input-field" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="Enter password" class="input-field" required>
+                    </div>
+                    <div id="teacher-error-message" class="error-message" style="color: red; margin-bottom: 10px;"></div>
+                    <div class="button-group">
+                        <button type="button" class="btn btn-login" onclick="handleTeacherLogin()">Log In</button>
+                        <button type="button" class="btn btn-signup" onclick="handleTeacherDemo()">Sign Up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/login.js"></script>
+</body>
+</html>

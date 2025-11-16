@@ -1,0 +1,69 @@
+<!-- Debug Page to test teacher dashboard -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Teacher Dashboard</title>
+    <style>
+        body { font-family: monospace; padding: 20px; background: #1a1a1a; color: #0f0; }
+        .button { padding: 10px 20px; margin: 10px; cursor: pointer; background: #0f0; color: #000; }
+        .log { border: 1px solid #0f0; padding: 10px; margin: 10px 0; max-height: 300px; overflow-y: auto; }
+        h2 { color: #0f0; }
+    </style>
+</head>
+<body>
+    <h1>DEBUG CONSOLE</h1>
+    <button class="button" onclick="testLogin()">1. Test Login</button>
+    <button class="button" onclick="goToTeacher()">2. Go to Teacher Dashboard</button>
+    <button class="button" onclick="testClickTab()">3. Test Click Tab</button>
+    <button class="button" onclick="showConsole()">4. Show Console Logs</button>
+    
+    <div class="log" id="console"></div>
+
+    <script>
+        // Capture all console logs
+        const logs = [];
+        const originalLog = console.log;
+        const originalError = console.error;
+        
+        console.log = function(...args) {
+            logs.push('[LOG] ' + args.join(' '));
+            originalLog.apply(console, args);
+            updateDisplay();
+        };
+        
+        console.error = function(...args) {
+            logs.push('[ERR] ' + args.join(' '));
+            originalError.apply(console, args);
+            updateDisplay();
+        };
+        
+        function updateDisplay() {
+            document.getElementById('console').innerHTML = logs.map(l => l + '<br>').join('');
+            document.getElementById('console').scrollTop = document.getElementById('console').scrollHeight;
+        }
+        
+        function testLogin() {
+            logs.push('=== TESTING LOGIN ===');
+            const testUser = { username: 'randhir sir', password: 'password123', role: 'teacher', name: 'Randhir Singh', id: 't001' };
+            localStorage.setItem('universe_user', JSON.stringify(testUser));
+            logs.push('✓ User stored in localStorage');
+            updateDisplay();
+        }
+        
+        function goToTeacher() {
+            logs.push('=== NAVIGATING TO TEACHER ===');
+            window.location.href = 'teacher.html';
+        }
+        
+        function testClickTab() {
+            logs.push('=== TESTING TAB CLICK ===');
+            // This will be called from teacher dashboard
+            window.location.href = 'teacher.html?test=true';
+        }
+        
+        function showConsole() {
+            updateDisplay();
+        }
+    </script>
+</body>
+</html>

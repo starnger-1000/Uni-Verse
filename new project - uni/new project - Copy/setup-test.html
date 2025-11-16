@@ -1,0 +1,23 @@
+<!-- Quick Test Setup -->
+<html>
+<head><title>Setup Test User</title></head>
+<body>
+<h1>Setting up test user...</h1>
+<script>
+const testUser = {
+    username: 'randhir sir',
+    password: 'password123',
+    role: 'teacher',
+    name: 'Randhir Singh',
+    id: 't001'
+};
+
+localStorage.setItem('universe_user', JSON.stringify(testUser));
+console.log('Test user set in localStorage');
+console.log(localStorage.getItem('universe_user'));
+
+// Redirect to teacher dashboard
+window.location.href = 'teacher.html';
+</script>
+</body>
+</html>

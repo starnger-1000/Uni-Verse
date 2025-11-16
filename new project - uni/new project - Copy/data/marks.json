@@ -1,0 +1,128 @@
+{
+  "weeks": [
+    "Week 1",
+    "Week 2",
+    "Week 3",
+    "Week 4",
+    "Week 5",
+    "Week 6",
+    "Week 7",
+    "Week 8"
+  ],
+  "subjects": [
+    {
+      "name": "Mathematics",
+      "data": [65, 68, 72, 70, 75, 78, 76, 80],
+      "color": "#667eea"
+    },
+    {
+      "name": "Science",
+      "data": [78, 81, 85, 87, 89, 91, 92, 94],
+      "color": "#764ba2"
+    },
+    {
+      "name": "English",
+      "data": [88, 87, 89, 88, 90, 91, 93, 94],
+      "color": "#4fc3f7"
+    },
+    {
+      "name": "History",
+      "data": [55, 58, 62, 65, 68, 72, 75, 78],
+      "color": "#00bcd4"
+    }
+  ],
+  "classes": [
+    {
+      "id": "CSE-2A",
+      "name": "CSE-2A",
+      "students": [
+        {
+          "rollNo": "01",
+          "name": "Navneet Kumar",
+          "marks": [
+            { "subject": "Mathematics", "marks": 85 },
+            { "subject": "Science", "marks": 80 },
+            { "subject": "English", "marks": 88 },
+            { "subject": "History", "marks": 82 }
+          ]
+        },
+        {
+          "rollNo": "02",
+          "name": "Rahul Singh",
+          "marks": [
+            { "subject": "Mathematics", "marks": 78 },
+            { "subject": "Science", "marks": 82 },
+            { "subject": "English", "marks": 80 },
+            { "subject": "History", "marks": 85 }
+          ]
+        },
+        {
+          "rollNo": "03",
+          "name": "Priya Sharma",
+          "marks": [
+            { "subject": "Mathematics", "marks": 92 },
+            { "subject": "Science", "marks": 90 },
+            { "subject": "English", "marks": 95 },
+            { "subject": "History", "marks": 88 }
+          ]
+        },
+        {
+          "rollNo": "04",
+          "name": "Arjun Patel",
+          "marks": [
+            { "subject": "Mathematics", "marks": 88 },
+            { "subject": "Science", "marks": 85 },
+            { "subject": "English", "marks": 87 },
+            { "subject": "History", "marks": 90 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CSE-2B",
+      "name": "CSE-2B",
+      "students": [
+        {
+          "rollNo": "01",
+          "name": "Sophia Gupta",
+          "marks": [
+            { "subject": "Mathematics", "marks": 90 },
+            { "subject": "Science", "marks": 88 },
+            { "subject": "English", "marks": 92 },
+            { "subject": "History", "marks": 89 }
+          ]
+        },
+        {
+          "rollNo": "02",
+          "name": "Vikram Singh",
+          "marks": [
+            { "subject": "Mathematics", "marks": 75 },
+            { "subject": "Science", "marks": 78 },
+            { "subject": "English", "marks": 76 },
+            { "subject": "History", "marks": 80 }
+          ]
+        },
+        {
+          "rollNo": "03",
+          "name": "Anjali Verma",
+          "marks": [
+            { "subject": "Mathematics", "marks": 95 },
+            { "subject": "Science", "marks": 93 },
+            { "subject": "English", "marks": 94 },
+            { "subject": "History", "marks": 92 }
+          ]
+        },
+        {
+          "rollNo": "04",
+          "name": "Rohan Desai",
+          "marks": [
+            { "subject": "Mathematics", "marks": 82 },
+            { "subject": "Science", "marks": 84 },
+            { "subject": "English", "marks": 83 },
+            { "subject": "History", "marks": 85 }
+          ]
+        }
+      ]
+    }
+  ]
+}

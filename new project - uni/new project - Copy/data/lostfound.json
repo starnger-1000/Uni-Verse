@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Black Leather Wallet",
+    "location": "Central Library",
+    "type": "lost"
+  },
+  {
+    "id": 2,
+    "name": "Blue Water Bottle",
+    "location": "Cafeteria",
+    "type": "found"
+  },
+  {
+    "id": 3,
+    "name": "Student ID Card",
+    "location": "Classroom B - Building 2",
+    "type": "lost"
+  },
+  {
+    "id": 4,
+    "name": "Red Backpack",
+    "location": "Sports Ground",
+    "type": "found"
+  },
+  {
+    "id": 5,
+    "name": "AirPods Case",
+    "location": "Computer Lab",
+    "type": "lost"
+  }
+]

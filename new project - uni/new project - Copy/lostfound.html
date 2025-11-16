@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost & Found - UniVerse</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <img src="images/college-logo.svg" alt="Guru Nanak Dev Engineering College" class="navbar-logo">
+            </div>
+            <div class="navbar-brand">UniVerse</div>
+            <div class="navbar-right">
+                <div class="navbar-user">
+                    <span id="usernameDisplay"></span>
+                    <a href="dashboard.html" class="nav-back-link">← Back to Dashboard</a>
+                    <button id="logoutBtn" class="btn-logout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="lostfound-container">
+        <!-- Header -->
+        <div class="lf-header">
+            <h1>Lost & Found Center</h1>
+            <p class="lf-subtitle">Help others and yourself find missing items</p>
+        </div>
+
+        <!-- Report Item Form -->
+        <div class="lf-form-section">
+            <div class="form-card lf-form-card">
+                <h2>📝 Report Lost or Found Item</h2>
+                <form id="itemForm">
+                    <div class="form-group">
+                        <input 
+                            type="text" 
+                            id="itemName" 
+                            placeholder="What item are you reporting?" 
+                            class="input-field"
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <input 
+                            type="text" 
+                            id="itemLocation" 
+                            placeholder="Where was it lost/found?" 
+                            class="input-field"
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <select id="itemType" class="input-field select-field" required>
+                            <option value="">Select status</option>
+                            <option value="lost">🔴 Lost</option>
+                            <option value="found">🟢 Found</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea 
+                            id="itemDescription" 
+                            placeholder="Add description (color, brand, condition, etc.)" 
+                            class="input-field textarea-field"
+                            rows="3"
+                        ></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <span>➕ Report Item</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Controls & Filters -->
+        <div class="lf-controls">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">
+                    <span>📦</span> All Items
+                </button>
+                <button class="filter-btn" data-filter="lost">
+                    <span>🔴</span> Lost
+                </button>
+                <button class="filter-btn" data-filter="found">
+                    <span>🟢</span> Found
+                </button>
+            </div>
+            <button id="reloadBtn" class="btn btn-secondary">🔄 Reload Sample</button>
+        </div>
+
+        <!-- Stats -->
+        <div class="lf-stats">
+            <div class="stat-mini">
+                <div class="stat-number" id="totalItems">0</div>
+                <div class="stat-text">Total Items</div>
+            </div>
+            <div class="stat-mini">
+                <div class="stat-number" id="lostCount">0</div>
+                <div class="stat-text">Lost Items</div>
+            </div>
+            <div class="stat-mini">
+                <div class="stat-number" id="foundCount">0</div>
+                <div class="stat-text">Found Items</div>
+            </div>
+        </div>
+
+        <!-- Items Display -->
+        <div class="lf-items-section">
+            <h2 id="itemsTitle">All Items</h2>
+            <div id="itemsList" class="items-grid"></div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/lostfound.js"></script>
+</body>
+</html>

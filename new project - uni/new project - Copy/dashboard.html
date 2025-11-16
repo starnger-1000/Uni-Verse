@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - UniVerse</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/glass-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+</head>
+<body class="student-theme">
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <img src="images/college-logo.svg" alt="Guru Nanak Dev Engineering College" class="navbar-logo">
+            </div>
+            <div class="navbar-brand">UniVerse</div>
+            <div class="navbar-right">
+                <div class="navbar-user">
+                    <span id="welcomeName"></span>
+                    <a href="lostfound.html" class="lost-found-tab">
+                        <span class="lost-found-icon">✨</span>
+                        Lost & Found
+                    </a>
+                    <button id="logoutButton" class="btn-logout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">Dashboard</div>
+            <nav class="sidebar-nav">
+                <button class="sidebar-tab active" data-tab="overview">
+                    <span class="tab-icon">📊</span>
+                    Overview
+                </button>
+                <button class="sidebar-tab" data-tab="profile">
+                    <span class="tab-icon">👤</span>
+                    Profile
+                </button>
+                <button class="sidebar-tab" data-tab="academic">
+                    <span class="tab-icon">📚</span>
+                    Academic Records
+                </button>
+                <button class="sidebar-tab" data-tab="activities">
+                    <span class="tab-icon">🎯</span>
+                    Extra Curricular
+                </button>
+                <button class="sidebar-tab" data-tab="attendance">
+                    <span class="tab-icon">📋</span>
+                    Attendance
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+            <!-- Overview Tab -->
+            <div class="tab-content active" id="tab-overview">
+                <div class="greeting-section">
+                    <h1 id="greetingMessage">Welcome back!</h1>
+                    <p class="greeting-subtitle">Here's your dashboard overview</p>
+                </div>
+
+                <!-- Attendance Warning Alert -->
+                <div id="attendanceAlert" class="alert alert-warning hidden">
+                    <span class="alert-icon">⚠️</span>
+                    <div class="alert-content">
+                        <strong>Low Attendance Warning</strong>
+                        <p>Your attendance is below 75%. Please attend more classes to maintain good academic standing.</p>
+                    </div>
+                    <button class="alert-close" onclick="closeAlert()">×</button>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="attendanceValue">--</div>
+                        <div class="stat-label">Attendance %</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="eventsValue">--</div>
+                        <div class="stat-label">Upcoming Events</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="itemsValue">--</div>
+                        <div class="stat-label">Lost Items</div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Events Section -->
+                <div class="events-section">
+                    <h2>Upcoming Events</h2>
+                    <div id="upcomingEventsList" class="upcoming-events">
+                        <p class="empty-state">Loading events...</p>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h2>Attendance Trends</h2>
+                    <canvas id="attendanceChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Profile Tab -->
+            <div class="tab-content" id="tab-profile">
+                <div class="section-header">
+                    <h1>Student Profile</h1>
+                </div>
+                <div class="profile-grid">
+                    <div class="profile-card">
+                        <div class="profile-avatar">👨‍🎓</div>
+                        <div class="profile-details">
+                            <h3 id="profileName">Student Name</h3>
+                            <p id="profileID">Student ID: --</p>
+                            <p id="profileEmail">Email: --</p>
+                            <p id="profileDepartment">Department: --</p>
+                        </div>
+                    </div>
+                    <div class="profile-info">
+                        <h3>Contact Information</h3>
+                        <div class="info-item">
+                            <span class="info-label">Phone:</span>
+                            <span class="info-value" id="profilePhone">Not provided</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Address:</span>
+                            <span class="info-value" id="profileAddress">Not provided</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Semester:</span>
+                            <span class="info-value" id="profileSemester">Semester 4</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Academic Records Tab -->
+            <div class="tab-content" id="tab-academic">
+                <div class="section-header">
+                    <h1>Academic Records</h1>
+                </div>
+                <div class="academic-container">
+                    <div class="gpa-card">
+                        <h3>GPA</h3>
+                        <div class="gpa-value" id="gpaValue">3.75</div>
+                        <p class="gpa-status">Excellent Performance</p>
+                    </div>
+                    <div class="academic-table">
+                        <h3>Current Semester Courses</h3>
+                        <table class="records-table">
+                            <thead>
+                                <tr>
+                                    <th>Course Code</th>
+                                    <th>Course Name</th>
+                                    <th>Credits</th>
+                                    <th>Grade</th>
+                                </tr>
+                            </thead>
+                            <tbody id="coursesTableBody">
+                                <tr>
+                                    <td>CS401</td>
+                                    <td>Advanced Algorithms</td>
+                                    <td>4</td>
+                                    <td><span class="grade-badge grade-a">A</span></td>
+                                </tr>
+                                <tr>
+                                    <td>CS402</td>
+                                    <td>Database Management</td>
+                                    <td>3</td>
+                                    <td><span class="grade-badge grade-a">A</span></td>
+                                </tr>
+                                <tr>
+                                    <td>CS403</td>
+                                    <td>Web Development</td>
+                                    <td>4</td>
+                                    <td><span class="grade-badge grade-a-plus">A+</span></td>
+                                </tr>
+                                <tr>
+                                    <td>CS404</td>
+                                    <td>Software Engineering</td>
+                                    <td>3</td>
+                                    <td><span class="grade-badge grade-a">A</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Extra Curricular Activities Tab -->
+            <div class="tab-content" id="tab-activities">
+                <div class="section-header">
+                    <h1>Extra Curricular Activities</h1>
+                </div>
+                <div class="activities-container">
+                    <div class="activity-card">
+                        <div class="activity-icon">🎭</div>
+                        <h3>Drama Club</h3>
+                        <p class="activity-role">Member</p>
+                        <p class="activity-status">Active</p>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-icon">⚽</div>
+                        <h3>Football Team</h3>
+                        <p class="activity-role">Forward</p>
+                        <p class="activity-status">Active</p>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-icon">🎨</div>
+                        <h3>Art Society</h3>
+                        <p class="activity-role">Designer</p>
+                        <p class="activity-status">Active</p>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-icon">💻</div>
+                        <h3>Tech Club</h3>
+                        <p class="activity-role">Core Member</p>
+                        <p class="activity-status">Active</p>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-icon">📖</div>
+                        <h3>Book Club</h3>
+                        <p class="activity-role">Member</p>
+                        <p class="activity-status">Inactive</p>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-icon">🌍</div>
+                        <h3>Environmental Club</h3>
+                        <p class="activity-role">Vice President</p>
+                        <p class="activity-status">Active</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attendance Tab -->
+            <div class="tab-content" id="tab-attendance">
+                <div class="section-header">
+                    <h1>Attendance Details</h1>
+                </div>
+                <div class="attendance-container">
+                    <div class="attendance-summary">
+                        <div class="summary-card">
+                            <div class="summary-number" id="attendancePercentage">92%</div>
+                            <div class="summary-label">Overall Attendance</div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-number" id="classesAttended">46</div>
+                            <div class="summary-label">Classes Attended</div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-number" id="classesMissed">4</div>
+                            <div class="summary-label">Classes Missed</div>
+                        </div>
+                    </div>
+                    <div class="attendance-chart">
+                        <h3>Monthly Attendance</h3>
+                        <canvas id="attendanceDetailChart"></canvas>
+                    </div>
+                    <div class="subject-attendance">
+                        <h3>Subject-wise Attendance</h3>
+                        <div class="attendance-list">
+                            <div class="attendance-item">
+                                <span class="subject-name">Advanced Algorithms</span>
+                                <div class="attendance-bar">
+                                    <div class="attendance-fill" style="width: 95%"></div>
+                                </div>
+                                <span class="attendance-pct">95%</span>
+                            </div>
+                            <div class="attendance-item">
+                                <span class="subject-name">Database Management</span>
+                                <div class="attendance-bar">
+                                    <div class="attendance-fill" style="width: 88%"></div>
+                                </div>
+                                <span class="attendance-pct">88%</span>
+                            </div>
+                            <div class="attendance-item">
+                                <span class="subject-name">Web Development</span>
+                                <div class="attendance-bar">
+                                    <div class="attendance-fill" style="width: 96%"></div>
+                                </div>
+                                <span class="attendance-pct">96%</span>
+                            </div>
+                            <div class="attendance-item">
+                                <span class="subject-name">Software Engineering</span>
+                                <div class="attendance-bar">
+                                    <div class="attendance-fill" style="width: 90%"></div>
+                                </div>
+                                <span class="attendance-pct">90%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="js/supabase-auth.js"></script>
+    <script type="module" src="js/supabase-client.js"></script>
+    <script type="module" src="js/student-data.js"></script>
+    <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>
